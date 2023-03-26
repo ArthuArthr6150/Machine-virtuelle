@@ -5,8 +5,8 @@ from Fichier import View
 from Fichier import Open
 from Fichier import Delete
 from Fichier import Modify
-from Jeu.plusOUmoins import PlusOuMoins
-from Jeu.Loto import loto
+from plusOUmoins import PlusOuMoins
+from Loto import loto
 from Antivirus import AntiV
 from Para import Paral
 
