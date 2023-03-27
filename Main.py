@@ -10,7 +10,7 @@ from Loto import loto
 from Antivirus import AntiV
 from Para import Paral
 
-code = "1234"
+code = "1234" #inscriver le code pour la machine ici.
 run = True
 dév = False
 play = False
