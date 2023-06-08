@@ -3,7 +3,7 @@ import random
 def loto():
     correct = 0
     Mynumbers = []
-    numbers = [random.randint(1,9),random.randint(1,9),random.randint(1,9),random.randint(1,9),random.randint(1,9)]
+    numbers = [random.randint(1,9) for i in range(5)]
     while True:
         try:
             for a in numbers:
