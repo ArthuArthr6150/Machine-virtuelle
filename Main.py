@@ -20,7 +20,7 @@ dév = False
 play = False
 
 print("<!> On ne supporte pas windows. <!>")
-print("Pour connaitre les commandes il y a la commande Help")
+print("Pour connaitre les commandes il y a la commande Help.")
 
 while run:
     
