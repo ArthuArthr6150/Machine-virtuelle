@@ -68,6 +68,7 @@ while run:
             Parametre(code)
         elif com == "Calculatrice":
             Calcul()
+        else: print("Cette commande n'est pas connue/n'existe pas. Vous pouvez vérifier la version de votre MV.")
     if com == "Help" and dév == False:
         CommandesV = {"Off":"Eteins la MV.","Help":"Connaitre les fonction","Aléatoire":"Donner un nombre aléatoire entre un minimum et un maximum","Déverrouille":"Donne acces à d'autre commandes"}
         print(CommandesV)
@@ -78,3 +79,4 @@ while run:
         run = False
     elif com == "Paral":
         Paral()
+    else: print("Cette commande n'est pas connue/n'existe pas. Vous pouvez vérifier la version de votre MV.")
