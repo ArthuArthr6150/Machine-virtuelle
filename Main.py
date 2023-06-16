@@ -9,8 +9,12 @@ from plusOUmoins import PlusOuMoins
 from Loto import loto
 from Antivirus import AntiV
 from Para import Paral
+from Paramêtre import Parametre
+from Calculator import Calcul
+import json
 
-code = "1234" #inscriver le code pour la machine ici.
+with open("Code.json", "r") as file:
+    code = json.load(file)
 run = True
 dév = False
 play = False
@@ -40,7 +44,7 @@ while run:
             elif com == 'Lotto':
                 loto()
         elif com == 'Help' and play == False:
-            Commandes = {'AntiVirus':'Bloque les virus.',"Play":"Permet d'accèder aux jeux vidéo.","Off":"Eteins la MV.","Modify":"Modifier un fichier.","Delete":"Suprime un fichier.","Open":'Ouvre le fichier de notre choix','Create':"Créer des fichier","Help":"Connaitre les fonction","Aléatoire":"Donner un nombre aléatoire entre un minimum et un maximum","Déverrouille":"Donne acces à d'autre commandes","View":"Permet de voir les fichier existant."}
+            Commandes = {"Calculatrice":"Petite calculatrice digne de la 'Petite FX'",'Paramêtre':'Permet de changer des paramêtres.','AntiVirus':'Bloque les virus.',"Play":"Permet d'accèder aux jeux vidéo.","Off":"Eteins la MV.","Modify":"Modifier un fichier.","Delete":"Suprime un fichier.","Open":'Ouvre le fichier de notre choix','Create':"Créer des fichier","Help":"Connaitre les fonction","Aléatoire":"Donner un nombre aléatoire entre un minimum et un maximum","Déverrouille":"Donne acces à d'autre commandes","View":"Permet de voir les fichier existant."}
             print(Commandes)
         elif com == "Create":
             com = input("Le nom : ")
@@ -60,6 +64,10 @@ while run:
             play = True
         elif com == "AntiVirus":
             AntiV()
+        elif com == "Paramêtre":
+            Parametre(code)
+        elif com == "Calculatrice":
+            Calcul()
     if com == "Help" and dév == False:
         CommandesV = {"Off":"Eteins la MV.","Help":"Connaitre les fonction","Aléatoire":"Donner un nombre aléatoire entre un minimum et un maximum","Déverrouille":"Donne acces à d'autre commandes"}
         print(CommandesV)
