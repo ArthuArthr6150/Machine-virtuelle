@@ -1,6 +1,8 @@
 from getpass import getpass
 import json
 import random
+import hashlib
+
 with open("Fichier.json", "r") as file:
     fichiers = json.load(file)
 with open("Code.json", "r") as file:
@@ -18,12 +20,22 @@ Détruire un utilisateur""")
     print()
     if pch == "Changer le mot de passe":
         cod = getpass("Votre code pour continer : ")
-        if cod == code :
+        sha = hashlib.sha256()
+        cod_byte = cod.encode('utf-8')
+        sha.update(cod_byte)
+        cod_hache = sha.hexdigest()
+        if cod_hache == code :
             nCode = getpass("Votre nouveau code : ")
             vCode = getpass("Votre code à nouveau : ")
             if nCode == vCode:
+                sha = hashlib.sha256()
+                ncode_byte = nCode.encode('utf-8')
+                sha.update(ncode_byte)
+                ncode_hache = sha.hexdigest()
+                codes[users[nuser]] = ncode_hache
                 with open("Code.json", "w") as file:
                     json.dump(nCode, file)
+        else: print("Ce n'est pas le bon code")
     elif pch == "Créer un nouvel utilisateur":
         nuser = input("Comment voulez-vous vous appeler : ")
         users[nuser] = random.randint(0, 10000)
@@ -58,15 +70,11 @@ Détruire un utilisateur""")
             if usersel in users:
                 del users[usersel]
                 del fichiers[user]
-                del codes[user]
-                with open("Fichier.json", "w") as file:
-                    json.dump(fichiers, file)
-                with open("Code.json", "w") as file:
-                    json.dump(codes, file)
-                with open("Users.json", "w") as file:
-                    json.dump(users, file)
+                del code[user]
+                with open("Users.json", "r") as file:
+                    users = json.load(file)
                 if len(users) == 0 or usersel == username:
                     return True
                 else: break
             else: print("Cet utilisateur n'est pas connu.")
-    else: print("Ce paramêtre n'est pas connu/n'existe pas. Vous pouvez vérifier la version de votre MV.")
+    else: print("Ce paramêtre n'est pas connu/n'existe pas. Vous pouvez vérifier la version de votre MV.") de votre MV.")
