@@ -1,6 +1,6 @@
 from getpass import getpass
 import json
-mport random
+import random
 with open("Fichier.json", "r") as file:
     fichiers = json.load(file)
 with open("Code.json", "r") as file:
