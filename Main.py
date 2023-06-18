@@ -17,9 +17,6 @@ from getpass import getpass
 import hashlib
 
 print("<!> On ne supporte pas windows. <!>")
-print("""Pour connaitre les commandes il y a la commande Help.
-""")
-
 username = ""
 user = ""
 with open("Users.json", "r") as file:
@@ -63,6 +60,9 @@ else:
 print(f"""
 Bienvenue {username}.      
 """)
+print("""Pour connaitre les commandes il y a la commande Help.
+""")
+
 with open("Code.json", "r") as file:
     codes = json.load(file)
 code = codes[user]
@@ -87,14 +87,18 @@ while run:
                 play = False
             elif com == 'Help':
                 CommandesP = {"cd /":"Retour à la gestion des fichier.","PlusOuMoins":"Jeu où tu dois deviner un nombre entre 0 et 1000","Lotto":""}
-                print(CommandesP)
+                for i in CommandesP:
+                    print(i, end=" ==> ")
+                    print(CommandesP[i])
             elif com == 'PlusOuMoins':
                 PlusOuMoins()
             elif com == 'Lotto':
                 loto()
         elif com == 'Help' and play == False:
-            Commandes = {"Calculatrice":"Petite calculatrice digne de la 'Petite FX'",'Paramêtre':'Permet de changer des paramêtres.','AntiVirus':'Bloque les virus.',"Play":"Permet d'accèder aux jeux vidéo.","Off":"Eteins la MV.","Modify":"Modifier un fichier.","Delete":"Suprime un fichier.","Open":'Ouvre le fichier de notre choix','Create':"Créer des fichier","Help":"Connaitre les fonction","Aléatoire":"Donner un nombre aléatoire entre un minimum et un maximum","Déverrouille":"Donne acces à d'autre commandes","View":"Permet de voir les fichier existant."}
-            print(Commandes)
+            Commandes = {"Calculatrice":"Petite calculatrice digne de la 'Petite FX'",'Paramêtre':'Permet de changer des paramêtres.','AntiVirus':'Bloque les virus.',"Play":"Permet d'accèder aux jeux vidéo.","Off":"Eteins la MV.","Modify":"Modifier un fichier.","Delete":"Suprime un fichier.","Open":'Ouvre le fichier de notre choix','Create':"Créer des fichier","Help":"Connaitre les fonction","Aléatoire":"Donner un nombre aléatoire entre un minimum et un maximum","View":"Permet de voir les fichier existant."}
+            for i in Commandes:
+                print(i, end=" ==> ")
+                print(Commandes[i])
         elif com == "Create":
             com = input("Le nom : ")
             print(com)
@@ -137,7 +141,9 @@ while run:
         else: print("Cette commande n'est pas connue/n'existe pas. Vous pouvez vérifier la version de votre MV.")
     elif com == "Help" and dév == False:
         CommandesV = {"Off":"Eteins la MV.","Help":"Connaitre les fonction","Aléatoire":"Donner un nombre aléatoire entre un minimum et un maximum","Déverrouille":"Donne acces à d'autre commandes"}
-        print(CommandesV)
+        for i in CommandesV:
+            print(i, end=" ==> ")
+            print(CommandesV[i])
     elif com == "Déverrouille":
         if Verrouillage(code):
             dév = True
