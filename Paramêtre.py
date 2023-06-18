@@ -58,9 +58,13 @@ Détruire un utilisateur""")
             if usersel in users:
                 del users[usersel]
                 del fichiers[user]
-                del code[user]
-                with open("Users.json", "r") as file:
-                    users = json.load(file)
+                del codes[user]
+                with open("Fichier.json", "w") as file:
+                    json.dump(fichiers, file)
+                with open("Code.json", "w") as file:
+                    json.dump(codes, file)
+                with open("Users.json", "w") as file:
+                    json.dump(users, file)
                 if len(users) == 0 or usersel == username:
                     return True
                 else: break
