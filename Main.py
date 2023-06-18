@@ -12,15 +12,58 @@ from Para import Paral
 from Paramêtre import Parametre
 from Calculator import Calcul
 import json
+import random
+from getpass import getpass
 
+print("<!> On ne supporte pas windows. <!>")
+print("""Pour connaitre les commandes il y a la commande Help.
+""")
+
+username = ""
+user = ""
+with open("Users.json", "r") as file:
+    users = json.load(file)
+if len(users) > 0:
+    print("Voisi les utilisateur enregistré:")
+    for i in users:
+        print(i)
+    while True:
+        print()
+        usersel = input("Quel utilisateur : ")
+        if usersel in users:
+            user += str(users[usersel])
+            username += usersel
+            break
+        else: print("Cet utilisateur n'est pas connu.")
+else:
+    with open("Fichier.json", "r") as file:
+        fichiers = json.load(file)
+    with open("Code.json", "r") as file:
+        codes = json.load(file)
+    nuser = input("Comment voulez-vous vous appeler : ")
+    users[nuser] = random.randint(0, 10000)
+    fichiers[users[nuser]] = {}
+    username += nuser
+    print()
+    code = getpass("Quel est votre code : ")
+    codes[users[nuser]] = code
+    with open("Fichier.json", "w") as file:
+        json.dump(fichiers, file)
+    with open("Code.json", "w") as file:
+        json.dump(codes, file)
+    with open("Users.json", "w") as file:
+        json.dump(users, file)
+    user += str(users[nuser])
+
+print(f"""Bienvenue {username}.
+      
+""")
 with open("Code.json", "r") as file:
-    code = json.load(file)
+    codes = json.load(file)
+code = codes[user]
 run = True
 dév = False
 play = False
-
-print("<!> On ne supporte pas windows. <!>")
-print("Pour connaitre les commandes il y a la commande Help.")
 
 while run:
     
@@ -30,6 +73,7 @@ while run:
         com = input("Python/User> ")
     else:
         com = input("Python/User/Vidéo_Games> ")
+    print()
     
     
     if dév == True:
@@ -49,15 +93,15 @@ while run:
         elif com == "Create":
             com = input("Le nom : ")
             print(com)
-            create(com)
+            create(com, user)
         elif com == "View":
-            View()
+            View(user)
         elif com == "Open":
-            Open()
+            Open(user)
         elif com == "Delete":
-            Delete()
+            Delete(user)
         elif com == "Modify":
-            Modify()
+            Modify(user)
         elif com == "Aléatoire":
             Alléatoire()
         elif com == "Play":
@@ -65,16 +109,37 @@ while run:
         elif com == "AntiVirus":
             AntiV()
         elif com == "Paramêtre":
-            Parametre(code)
+            c = Parametre(code, users, username, user)
+            if c in users:
+                username = c
+                user = users[c]
+            elif c == True:
+                print(f"A dieu, utilisateur {username}")
+                run = False
+            with open("Users.json", "w") as file:
+                json.dump(users, file)
+            with open("Fichier.json", "r") as file:
+                fichiers = json.load(file)
+            with open("Code.json", "r") as file:
+                codes = json.load(file)
         elif com == "Calculatrice":
             Calcul()
-    if com == "Help" and dév == False:
+        elif com == "Off":
+            print(f"Au revoir {username}")
+            run = False
+        elif com == "Paral":
+            Paral()
+        else: print("Cette commande n'est pas connue/n'existe pas. Vous pouvez vérifier la version de votre MV.")
+    elif com == "Help" and dév == False:
         CommandesV = {"Off":"Eteins la MV.","Help":"Connaitre les fonction","Aléatoire":"Donner un nombre aléatoire entre un minimum et un maximum","Déverrouille":"Donne acces à d'autre commandes"}
         print(CommandesV)
     elif com == "Déverrouille":
         if Verrouillage(code):
             dév = True
     elif com == "Off":
+        print(f"Au revoir {username}")
         run = False
     elif com == "Paral":
         Paral()
+    else: print("Cette commande n'est pas connue/n'existe pas. Vous pouvez vérifier la version de votre MV.")
+    print()
