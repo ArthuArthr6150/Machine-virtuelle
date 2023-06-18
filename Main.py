@@ -55,8 +55,8 @@ else:
         json.dump(users, file)
     user += str(users[nuser])
 
-print(f"""Bienvenue {username}.
-      
+print(f"""
+Bienvenue {username}.      
 """)
 with open("Code.json", "r") as file:
     codes = json.load(file)
