@@ -11,8 +11,6 @@ def create(name, ID):
             print(value)
             Fichier[ID][name] = value
             cre = True
-        elif not name in Fichier[ID]:
-            crea = True
         else:
             name = input("Veuillez modifier le nom du fichier : ")
             print(name)
