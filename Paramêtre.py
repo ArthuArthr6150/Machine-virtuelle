@@ -77,4 +77,4 @@ Détruire un utilisateur""")
                     return True
                 else: break
             else: print("Cet utilisateur n'est pas connu.")
-    else: print("Ce paramêtre n'est pas connu/n'existe pas. Vous pouvez vérifier la version de votre MV.") de votre MV.")
+    else: print("Ce paramêtre n'est pas connu/n'existe pas. Vous pouvez vérifier la version de votre MV.")
