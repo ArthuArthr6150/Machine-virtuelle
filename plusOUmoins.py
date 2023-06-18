@@ -14,11 +14,11 @@ def PlusOuMoins():
                     raise ValueError('Plus')
                 elif MyNum != number:
                     raise ValueError('Ce doit être un nombre entier positif.')
-            print(f"Tu n'as plus que {life} vies.")
             break
         except ValueError as e:
             print(e)
-    if life > 0:
+    if life >= 0 and MyNum == number:
         print('Great Job')
+        print(f"Tu n'as plus que {life + 1} vies.")
     else:
         print("Tu n'as plus de vies. You are a LOOSER.")
