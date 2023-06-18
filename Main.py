@@ -5,8 +5,8 @@ from Fichier import View
 from Fichier import Open
 from Fichier import Delete
 from Fichier import Modify
-from plusOUmoins import PlusOuMoins
-from Loto import loto
+from Jeu.plusOUmoins import PlusOuMoins
+from Jeu.Loto import loto
 from Antivirus import AntiV
 from Para import Paral
 from Paramêtre import Parametre
@@ -14,6 +14,7 @@ from Calculator import Calcul
 import json
 import random
 from getpass import getpass
+import hashlib
 
 print("<!> On ne supporte pas windows. <!>")
 print("""Pour connaitre les commandes il y a la commande Help.
@@ -46,9 +47,13 @@ else:
     username += nuser
     print()
     code = getpass("Quel est votre code : ")
-    codes[users[nuser]] = code
     with open("Fichier.json", "w") as file:
         json.dump(fichiers, file)
+    sha = hashlib.sha256()
+    code_byte = code.encode('utf-8')
+    sha.update(code_byte)
+    code_hache = sha.hexdigest()
+    codes[users[nuser]] = code_hache
     with open("Code.json", "w") as file:
         json.dump(codes, file)
     with open("Users.json", "w") as file:
