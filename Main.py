@@ -5,8 +5,8 @@ from Fichier import View
 from Fichier import Open
 from Fichier import Delete
 from Fichier import Modify
-from plusOUmoins import PlusOuMoins
-from Loto import loto
+from Jeu.plusOUmoins import PlusOuMoins
+from Jeu.Loto import loto
 from Antivirus import AntiV
 from Para import Paral
 from Paramêtre import Parametre
@@ -15,6 +15,32 @@ import json
 import random
 from getpass import getpass
 import hashlib
+print("""
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    """)
 
 print("<!> On ne supporte pas windows. <!>")
 username = ""
@@ -70,6 +96,34 @@ run = True
 dév = False
 play = False
 
+def Off():
+    print("""
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    """)
+
 while run:
     
     if dév == False:
@@ -86,7 +140,7 @@ while run:
             if com == "cd /":
                 play = False
             elif com == 'Help':
-                CommandesP = {"cd /":"Retour à la gestion des fichier.","PlusOuMoins":"Jeu où tu dois deviner un nombre entre 0 et 1000","Lotto":""}
+                CommandesP = {"cd /":"Retour à la gestion des fichier.","PlusOuMoins":"Jeu où tu dois deviner un nombre entre 0 et 1000.","Lotto":"Un jeu où l'on doit deviner les 5 nombres mystère."}
                 for i in CommandesP:
                     print(i, end=" ==> ")
                     print(CommandesP[i])
@@ -101,7 +155,6 @@ while run:
                 print(Commandes[i])
         elif com == "Create":
             com = input("Le nom : ")
-            print(com)
             create(com, user)
         elif com == "View":
             View(user)
@@ -116,12 +169,14 @@ while run:
         elif com == "Play":
             play = True
         elif com == "AntiVirus":
-            AntiV()
+            AntiV(user)
         elif com == "Paramêtre":
             c = Parametre(code, users, username, user)
             if c in users:
                 username = c
-                user = users[c]
+                user = str(users[c])
+                dév = False
+                code = codes[user]
             elif c == True:
                 print(f"A dieu, utilisateur {username}")
                 run = False
@@ -136,6 +191,7 @@ while run:
         elif com == "Off":
             print(f"Au revoir {username}")
             run = False
+            Off()
         elif com == "Paral":
             Paral()
         else: print("Cette commande n'est pas connue/n'existe pas. Vous pouvez vérifier la version de votre MV.")
@@ -150,6 +206,7 @@ while run:
     elif com == "Off":
         print(f"Au revoir {username}")
         run = False
+        Off()
     elif com == "Paral":
         Paral()
     else: print("Cette commande n'est pas connue/n'existe pas. Vous pouvez vérifier la version de votre MV.")
