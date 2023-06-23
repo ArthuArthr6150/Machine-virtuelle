@@ -7,20 +7,24 @@ def create(name, ID):
     crea = False
     while not cre:
         if crea:
-            value = input(name + " : ")
-            print(value)
+            print()
+            print(f"                        {name}")
+            print()
+            value = input()
             Fichier[ID][name] = value
             cre = True
         elif not name in Fichier[ID]:
             crea = True
         else:
             name = input("Veuillez modifier le nom du fichier : ")
-            print(name)
+            print()
+            print(f"                        {name}")
     with open('Fichier.json', 'w') as file:
         json.dump(Fichier, file)
 
 def View(ID):
     for fichier in Fichier[ID].keys():
+        print()
         print(fichier)
 
 def Open(ID):
@@ -28,12 +32,17 @@ def Open(ID):
     while A:
         name = input('Quel fichier : ')
         if name in Fichier[ID]:
+            print()
+            print(f"                        {name}")
+            print()
             print(Fichier[ID][name])
             A = False
         elif name == "^V":
             A = False
         else:
+            print()
             print("Ce fichier n'existe pas.")
+            print
 
 def Delete(ID):
     A = True
@@ -54,10 +63,10 @@ def Modify(ID):
     A = True
     while A:
         name = input('Quel Fichier : ')
-        print(name)
+        print()
+        print(f"                                            {name}")
         if name in Fichier[ID]:
             vallue = input("")
-            print(vallue)
             Fichier[ID][name] = vallue
             A = False
         elif len(Fichier) == 0:
