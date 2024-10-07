@@ -38,7 +38,13 @@ Détruire un utilisateur""")
         else: print("Ce n'est pas le bon code")
     elif pch == "Créer un nouvel utilisateur":
         nuser = input("Comment voulez-vous vous appeler : ")
-        users[nuser] = random.randint(0, 10000)
+        nw_id = 0
+        id_conf = False
+        while not id_conf:
+            nw_id = random.randint(0, 10000)
+            if not nw_id in users:
+                id_conf = True
+        users[nuser] = nw_id
         fichiers[users[nuser]] = {}
         print()
         code = getpass("Quel est votre code : ")
