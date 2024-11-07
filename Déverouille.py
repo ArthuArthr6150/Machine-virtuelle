@@ -14,4 +14,3 @@ def Verrouillage(code_hash):
         else:  
             dév = True
     return dév
-        
